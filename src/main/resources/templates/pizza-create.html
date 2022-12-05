@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>AGGIUNGI UNA NUOVA PIZZA ALL' ELENCO</h1>
+	<form 
+		method="POST" 
+		action="/pizza/create"
+		th:object="${pizza}" >
+	
+		<label>Nome pizza</label>
+		<input type="text" name="nome" th:field="*{nome}">
+		<br>
+		<label>Descrizione della pizza</label>
+		<input type="text" name="descizione" th:field="*{descrizione}">
+		<br>
+		<label>Prezzo</label>
+		<input type="number" name="prezzo" th:field="*{prezzo}">
+		<br>
+		<input type="submit" value="CREATE">
+	
+	</form>
+</body>
+</html>
