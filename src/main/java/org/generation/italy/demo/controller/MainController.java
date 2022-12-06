@@ -79,8 +79,16 @@ public class MainController {
 		model.addAttribute("pizza", pizza);
 		return "pizza-update";
 	}
-	@PostMapping("/pizza/store")
-	public String updateBook(@Valid Pizza pizza) {
+	@PostMapping("/pizza/update")
+	public String updatePizza(@Valid Pizza pizza,
+			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		
+		if (bindingResult.hasErrors()) {
+			
+			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+			
+			return "redirect:/pizza/update/" + pizza.getId();
+		}
 		
 		pizzaService.save(pizza);		
 		

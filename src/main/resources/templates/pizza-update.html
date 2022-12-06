@@ -6,11 +6,21 @@
 </head>
 <body>
 	<h1>modifica</h1>
+	
+	<h2>ERRORS</h2>
+		<li
+			th:each = "error : ${errors}"
+			th:object = "${error}"
+		>
+			[[*{defaultMessage}]]
+		</li>
 	<form 
 		method="POST" 
-		action="/pizza/store"
+		action="/pizza/update"
 		th:object="${pizza}" >
-	
+		
+		<input type="text" name="id" th:field="*{id}" style="display:none">
+		
 		<label>Nome pizza</label>
 		<input type="text" name="nome" th:field="*{nome}">
 		<br>

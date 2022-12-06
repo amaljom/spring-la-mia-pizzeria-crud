@@ -6,6 +6,14 @@
 </head>
 <body>
 	<h1>modifica</h1>
+	<h2>ERRORS</h2>
+		<li
+			th:each = "error : ${errors}"
+			th:object = "${error}"
+		>
+			[[*{defaultMessage}]]
+		</li>
+	
 	<form 
 		method="POST" 
 		action="/drink/update"

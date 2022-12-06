@@ -62,7 +62,7 @@ public class MainControllerDrinks {
 	}
 	
 	@GetMapping("/update/{id}")
-	public String editPizza(@PathVariable int id, Model model) {
+	public String editDrink(@PathVariable int id, Model model) {
 		
 		Optional<Drink> chosenDrink= drinkService.findDrinkById(id);
 		Drink drink = chosenDrink.get();
@@ -71,7 +71,15 @@ public class MainControllerDrinks {
 		return "drink-update";
 	}
 	@PostMapping("/update")
-	public String updateBook(@Valid Drink drink) {
+	public String updateDrink(@Valid Drink drink,
+		BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		
+		if (bindingResult.hasErrors()) {
+			
+			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+			
+			return "redirect:/drink/update/" + drink.getId();
+		}
 		
 		drinkService.save(drink);		
 		
@@ -79,7 +87,7 @@ public class MainControllerDrinks {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deletePizza(@PathVariable int id) {
+	public String deleteDrink(@PathVariable int id) {
 		
 		Optional<Drink> chosenDrink = drinkService.findDrinkById(id);
 		Drink drink = chosenDrink.get();
