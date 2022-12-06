@@ -6,24 +6,9 @@
 <body>
 	<h1>pizze</h1>
 	<a href="/pizza/create">Aggiungi una pizza</a>
-	<ul>
-		<li
-			th:each="pizza : ${pizze}"
-			th:object="${pizza}"
-		>
-			[[*{nome}]] - [[*{descrizione}]] - [[*{prezzo}]]€ -
-			
-			<a
-				th:href="@{/pizza/delete/{id} (id=*{id})}"
-			>
-				DELETE
-			</a> -
-			<a
-				th:href="@{/pizza/update/{id} (id=*{id})}"
-			>
-				UPDATE
-			</a>
-		</li>
-	</ul>
+	
+	<ul
+		th:replace="frag :: pizze(${pizze})"
+	></ul>
 </body>
 </html>

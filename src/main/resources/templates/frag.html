@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<ul
+		th:fragment="pizze(pizze)"
+	>
+		<li
+			th:each="pizza : ${pizze}"
+			th:object="${pizza}"
+		>
+			[[*{nome}]] - [[*{descrizione}]] - [[*{prezzo}]]€ -
+			
+			<a
+				th:href="@{/pizza/delete/{id} (id=*{id})}"
+			>
+				DELETE
+			</a> -
+			<a
+				th:href="@{/pizza/update/{id} (id=*{id})}"
+			>
+				UPDATE
+			</a>
+		</li>
+	</ul>
+</body>
+</html>

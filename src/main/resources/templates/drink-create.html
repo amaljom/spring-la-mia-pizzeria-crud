@@ -4,23 +4,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>AGGIUNGI UNA NUOVA PIZZA ALL' ELENCO</h1>
-	<li
-		th:each = "error : ${errors}"
-		th:object = "${error}"
-	>
-		[[*{defaultMessage}]]
-	</li>
+	<h1>AGGIUNGI UN DRINK ALL' ELENCO</h1>
 	
+	<h2>ERRORS</h2>
+		<li
+			th:each = "error : ${errors}"
+			th:object = "${error}"
+		>
+			[[*{defaultMessage}]]
+		</li>
 	<form 
 		method="POST" 
-		action="/pizza/create"
-		th:object="${pizza}" >
+		action="/drink/create"
+		th:object="${drink}" >
 	
-		<label>Nome pizza</label>
+		<label>Nome drinks</label>
 		<input type="text" name="nome" th:field="*{nome}">
 		<br>
-		<label>Descrizione della pizza</label>
+		<label>Descrizione del drink</label>
 		<input type="text" name="descizione" th:field="*{descrizione}">
 		<br>
 		<label>Prezzo</label>
