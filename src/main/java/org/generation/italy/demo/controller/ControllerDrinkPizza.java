@@ -1,7 +1,11 @@
 package org.generation.italy.demo.controller;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
+import org.generation.italy.demo.interf.PriceableInt;
 import org.generation.italy.demo.pojo.Drink;
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.service.DrinkService;
@@ -42,4 +46,20 @@ public class ControllerDrinkPizza {
 		
 		return "pizza-drink-search";
 	}
+	
+	@GetMapping("/items")
+	public String getOrderedListByPrice(Model model) {
+		
+		List<Drink> drinks = drinkService.findAll();
+				
+		List<Pizza> pizze = pizzaService.findAll();
+		
+		List<PriceableInt> newList = Stream.concat(drinks.stream(), pizze.stream()).toList();
+		
+		model.addAttribute("newList", newList);
+		
+		System.out.println(newList);
+		return "priceable";
+	}
+	
 }
