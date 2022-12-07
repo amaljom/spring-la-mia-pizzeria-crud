@@ -3,6 +3,7 @@ package org.generation.italy.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.generation.italy.demo.pojo.Drink;
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
@@ -44,6 +46,8 @@ public class MainController {
 		
 		return "pizza-create";
 	}
+	
+	// Create
 	@PostMapping("/pizza/create")
 	public String storePizza(@Valid @ModelAttribute("pizza") Pizza pizza,
 			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
@@ -58,7 +62,7 @@ public class MainController {
 		
 		return "redirect:/";
 	}
-	
+	// Delete
 	@GetMapping("/pizza/delete/{id}")
 	public String deletePizza(@PathVariable("id") int id) {
 		
@@ -69,7 +73,7 @@ public class MainController {
 		
 		return "redirect:/";
 	}
-	
+	// Edit and Update
 	@GetMapping("/pizza/update/{id}")
 	public String editPizza(@PathVariable("id") int id, Model model) {
 		
@@ -93,5 +97,19 @@ public class MainController {
 		pizzaService.save(pizza);		
 		
 		return "redirect:/";
+	}
+	// Search
+	@GetMapping("/pizza/search")
+	public String getSearchDrinkByName(Model model, 
+			@RequestParam(name = "q", required = false) String query) {
+		
+		List<Pizza> pizze = query == null 
+				? pizzaService.findAll()
+				: pizzaService.findByName(query); 
+
+		model.addAttribute("pizze", pizze);
+		model.addAttribute("query", query);
+		
+		return "pizza-search";
 	}
 }

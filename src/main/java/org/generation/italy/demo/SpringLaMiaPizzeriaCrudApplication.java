@@ -31,23 +31,30 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 		Pizza b2 = new Pizza("bianca", "rosamrino", 5);
 		Pizza b3 = new Pizza("boscaiola", "funghi e salsiccia", 13);
 		Pizza b4 = new Pizza("napoli", "alici", 10);
+		Pizza b5 = new Pizza("samename", "pizza", 10);
 		
 		pizzaService.save(b1);
 		pizzaService.save(b2);
 		pizzaService.save(b3);
 		pizzaService.save(b4);
+		pizzaService.save(b5);
 		
 		
 		List<Pizza> pizze = pizzaService.findAll();
 		System.out.println(pizze);
 		
 		Drink d1 = new Drink("mojito", "bho", 10);
-		Drink d2 = new Drink("altro", "rosamrino", 5);
-		Drink d3 = new Drink("rum&cola", "cola", 13);
+		Drink d2 = new Drink("Zacapa", "rum", 7);
+		Drink d3 = new Drink("rum&cola", "cola", 9);
+		Drink d4 = new Drink("fanta", "fanta", 5);
+		Drink d5 = new Drink("samename", "drink", 10);
 		
 		drinkService.save(d1);
 		drinkService.save(d2);
 		drinkService.save(d3);
+		drinkService.save(d4);
+		drinkService.save(d5);
+		
 		
 		List<Drink> drinks = drinkService.findAll();
 		System.out.println(drinks);

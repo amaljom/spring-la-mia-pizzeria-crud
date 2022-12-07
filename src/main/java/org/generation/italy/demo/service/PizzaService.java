@@ -3,6 +3,7 @@ package org.generation.italy.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.generation.italy.demo.pojo.Drink;
 import org.generation.italy.demo.pojo.Pizza; 
 import org.generation.italy.demo.repo.PizzaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,10 @@ public class PizzaService {
 		return pizzaRepo.findAll();
 	}
 	
+	public List<Pizza> findByName(String nome) {
+		
+		return pizzaRepo.findByNomeContainingIgnoreCase(nome);
+	}
 	public Optional<Pizza> findPizzaById(int id) {
 		
 		return pizzaRepo.findById(id);
